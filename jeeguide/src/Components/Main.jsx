@@ -2,6 +2,7 @@ import HowToUse from "./HowToUse";
 import BooksAndMaterial from "./booksandmaterial";
 import Physics from "./Physics";
 import Sidebar from "./Sidebar";
+import Chemistry from "./Chemistry";
 
 export default function Main({activeSection}){
 
@@ -11,6 +12,7 @@ export default function Main({activeSection}){
                 {activeSection === "howtouse" && <HowToUse />}
                 {activeSection === "books" && <BooksAndMaterial />}
                 {activeSection === "physics" && <Physics />}
+                {activeSection === "chemistry" && <Chemistry />}
             </div>
         </>
     );

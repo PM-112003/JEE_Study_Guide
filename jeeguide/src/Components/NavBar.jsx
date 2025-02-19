@@ -40,7 +40,7 @@ export default function NavBar({setOpenSidebar, opensidebar}) {
                         }}
                     />
 
-                    {/* Dropdown Menu */}
+                    {/* Dropdown Menu --> to be modified based on user present in db or not*/}
                     {openDropdown && (
                         <div className="absolute right-0 top-14 w-48 bg-slate-800 border border-slate-700 shadow-lg rounded-md text-white z-50">
                             <ul className="flex flex-col">
