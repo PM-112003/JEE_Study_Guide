@@ -28,13 +28,13 @@ export default function Tr({topic, videoId, pdfUrl, practice}){
                             </a>
                         ) : null}
                 </td>
-                <td className='p-2 w-1 text-center border-r-[1px] border-slate-500 cursor-pointer'>
+                {/* <td className='p-2 w-1 text-center border-r-[1px] border-slate-500 cursor-pointer'>
                     {practice ? (
                             <a href={practiceURL} target="_blank" rel="noopener noreferrer" className='text-sky-400 underline underline-offset-2'>
                                 Practice
                             </a>
                         ) : null}
-                </td>
+                </td> */}
             </tr>
         </>
     )

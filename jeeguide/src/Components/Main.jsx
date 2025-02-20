@@ -3,6 +3,9 @@ import BooksAndMaterial from "./booksandmaterial";
 import Physics from "./Physics";
 import Sidebar from "./Sidebar";
 import Chemistry from "./Chemistry";
+import Math from "./Math";
+import Tips from "./tips";
+
 
 export default function Main({activeSection}){
 
@@ -13,6 +16,9 @@ export default function Main({activeSection}){
                 {activeSection === "books" && <BooksAndMaterial />}
                 {activeSection === "physics" && <Physics />}
                 {activeSection === "chemistry" && <Chemistry />}
+                {activeSection === "maths" && <Math />}
+                {activeSection === "tips" && <Tips />}
+
             </div>
         </>
     );

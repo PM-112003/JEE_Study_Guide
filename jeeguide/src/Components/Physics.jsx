@@ -59,14 +59,13 @@ export default function Physics(){
                                         <th className='p-2 w-[130px] text-center border-r-[1px] border-slate-500'>Topic</th>
                                         <th className='p-2 w-1 text-center border-r-[1px] border-slate-500'>Video</th>
                                         <th className='p-2 w-1 text-center border-r-[1px] border-slate-500'>Class examples</th>
-                                        <th className='p-2 w-1 text-center border-r-[1px] border-slate-500'>Practice</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {/* Use the TR component here for each row */}
                                     {/* Differentiation */}
                                     
-                                    <Tr topic="Intro to Calculus" videoId="MUZ81D-iBXU" practice="practice_1" />
+                                    <Tr topic="Intro to Calculus" videoId="MUZ81D-iBXU"  />
                                     <Tr topic="Intro to Functions" videoId="cOl2HPOhvlk" pdfUrl="/Class_egs/sample.pdf"/>
                                     <Tr topic="Intro to Differentiation" videoId="nwWzwS5Zf1Y"></Tr>
                                     <Tr topic="Differentiation of Algebraic Functions" videoId="RNgnYBmQLl4"></Tr>

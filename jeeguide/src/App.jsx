@@ -6,6 +6,7 @@ import Fullpage from './Components/Fullpage';
 import YoutubePlay from './Components/YoutubePlay';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Practice_1 from './Components/Practice/practice_1';
+import Blog_1 from './Components/Blogs/Blog_1';
 
 function App() {
 
@@ -23,6 +24,12 @@ function App() {
     {
       path: "/practice/:practice",
       element: <> <Practice_1></Practice_1> </>
+    },
+
+    //blogs paths
+    {
+      path: "/doubts_blog",
+      element: <><Blog_1></Blog_1></>
     }
     
   ])
