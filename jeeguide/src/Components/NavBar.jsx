@@ -46,13 +46,11 @@ export default function NavBar({setOpenSidebar, opensidebar}) {
                             <ul className="flex flex-col">
                                 <li 
                                     className="px-4 py-2 hover:bg-slate-700 cursor-pointer"
-                                    onClick={() => alert("Go to Login/Sign In")}
                                 >
-                                    Login / Sign In
+                                    Sign Out
                                 </li>
                                 <li 
                                     className="px-4 py-2 hover:bg-slate-700 cursor-pointer"
-                                    onClick={() => alert("Go to Profile")}
                                 >
                                     See Profile
                                 </li>

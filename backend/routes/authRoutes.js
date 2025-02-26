@@ -9,8 +9,11 @@ const router = express.Router();
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).json({ message: "Email already exists" });
+    const existingUser = await User.findOne({ username });
+    if (existingUser){
+      console.log("username already exists");
+      return res.status(400).json({ message: "username already exists" });
+    } 
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ username, email, password: hashedPassword });
@@ -44,6 +47,7 @@ router.post("/signin", async (req, res) => {
 // User Logout
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
+  console.log("logged out user");
   res.json({ message: "User logged out" });
 });
 
