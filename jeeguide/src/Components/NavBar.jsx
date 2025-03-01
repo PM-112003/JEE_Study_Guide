@@ -2,23 +2,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChalkboardTeacher, faUserCircle, faMoon, faSun, faBars } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../api.js";
 
 export default function NavBar({setOpenSidebar, opensidebar}) {
+    const navigate = useNavigate();
 
-    const [openDropdown, setOpenDropdown] = useState(false);
-
-    // Close dropdown when clicking outside
-    useEffect(() => {
-        const closeDropdown = (e) => {
-            if (!e.target.closest(".user-dropdown")) {
-                setOpenDropdown(false);
-            }
-        };
-
-        document.addEventListener("click", closeDropdown);
-        return () => document.removeEventListener("click", closeDropdown);
-    }, []);
-
+    const handleLogout = async () => {
+        try {
+        await logout(); // Call logout API
+        navigate("/"); // Redirect to SignIn page
+        } catch (error) {
+        console.error("Logout failed", error.response.data);
+        }
+    };
+    
     return (
         <>
 
@@ -30,33 +28,10 @@ export default function NavBar({setOpenSidebar, opensidebar}) {
                     className="md:hidden text-slate-400 text-4xl p-2 cursor-pointer" 
                 />
 
-                {/* User Profile Icon */}
-                <div className="relative user-dropdown">
-                    <FontAwesomeIcon 
-                        icon={faUserCircle} 
-                        className="text-slate-400 text-4xl p-2 cursor-pointer"
-                        onClick={() => {
-                            setOpenDropdown(!openDropdown);
-                        }}
-                    />
-
-                    {/* Dropdown Menu --> to be modified based on user present in db or not*/}
-                    {openDropdown && (
-                        <div className="absolute right-0 top-14 w-48 bg-slate-800 border border-slate-700 shadow-lg rounded-md text-white z-50">
-                            <ul className="flex flex-col">
-                                <li 
-                                    className="px-4 py-2 hover:bg-slate-700 cursor-pointer"
-                                >
-                                    Sign Out
-                                </li>
-                                <li 
-                                    className="px-4 py-2 hover:bg-slate-700 cursor-pointer"
-                                >
-                                    See Profile
-                                </li>
-                            </ul>
-                        </div>
-                    )}
+                {/* Logout*/}
+                <div className="text-xl cursor-pointer border-[1px] border-slate-500 py-1 px-2 rounded-xl shadow-sm shadow-sky-400 hover:shadow-md hover:shadow-sky-400"
+                onClick={handleLogout}>
+                    Logout
                 </div>
             </div>
             

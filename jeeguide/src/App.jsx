@@ -7,13 +7,19 @@ import YoutubePlay from './Components/YoutubePlay';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Practice_1 from './Components/Practice/practice_1';
 import Blog_1 from './Components/Blogs/Blog_1';
+import { SignalIcon } from 'lucide-react';
+import SignIn from './Components/Authorization/SignIn';
 
 function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/content",
       element: <><Fullpage></Fullpage></>
+    },
+    {
+      path: "/",
+      element: <><SignIn></SignIn></>
     },
     {
       path: "/video/:videoId/:topic",
