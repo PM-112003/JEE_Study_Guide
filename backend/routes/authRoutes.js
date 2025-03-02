@@ -19,8 +19,11 @@ router.post("/signup", async (req, res) => {
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
+    console.log("User created successfully");
+
     res.status(201).json({ message: "User created successfully!" });
   } catch (error) {
+    console.log("error signing up");
     res.status(500).json({ message: "Error signing up user" });
   }
 });
@@ -37,9 +40,12 @@ router.post("/signin", async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
     res.cookie("token", token, { httpOnly: true, secure: false });
+
+    console.log("Login successful");
     
     res.json({ message: "Login successful" });
   } catch (error) {
+    console.log("error logging in");
     res.status(500).json({ message: "Error logging in" });
   }
 });

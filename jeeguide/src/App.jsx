@@ -9,6 +9,7 @@ import Practice_1 from './Components/Practice/practice_1';
 import Blog_1 from './Components/Blogs/Blog_1';
 import { SignalIcon } from 'lucide-react';
 import SignIn from './Components/Authorization/SignIn';
+import SignUp from './Components/Authorization/SignUp';
 
 function App() {
 
@@ -20,6 +21,10 @@ function App() {
     {
       path: "/",
       element: <><SignIn></SignIn></>
+    },
+    {
+      path: "/signup",
+      element: <><SignUp></SignUp></>
     },
     {
       path: "/video/:videoId/:topic",

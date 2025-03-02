@@ -25,15 +25,30 @@ export default function SignIn() {
 
     return (
         <>
-            <div className="signin-container">
-                <h2>Sign In</h2>
-                {error && <p className="error">{error}</p>} {/* Display error message if login fails */}
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="username" placeholder="Username" onChange={handleChange} required /> <br />
-                    <input type="password" name="password" placeholder="Password" onChange={handleChange} required /> <br />
-                    <button type="submit">Sign In</button>
-                </form>
+            <div className="bg-slate-950 h-screen w-screen flex flex-col items-center text-white">
+                {/* heading */}
+                <div className="mt-32 text-center text-sky-blue border-2 border-slate-600 rounded-xl p-5 md:w-[35%] sm:w-[60%] w-[80%]">
+                    {/* sign in */}
+                    <div className="text-sky-500 text-5xl font-bold">Sign In</div>
+                    
+                    <br />
+
+                    {/* the form */}
+                    <form onSubmit={handleSubmit} >
+                        <label htmlFor="username">Username: </label>
+                        <input type="text" id="username"  className="text-black ml-2 rounded-xl p-2" name="username" value={formData.username} placeholder="Username" onChange={handleChange} required /> <br /> <br />
+                        <label htmlFor="password">Password: </label>
+                        <input type="password" id="password" className="text-black ml-2 rounded-xl p-2" name="password" value={formData.password} placeholder="Password" onChange={handleChange} required /> <br /> <br />
+                        <button type="submit" className="border-[1px] p-2 rounded-xl w-[30%] border-slate-600 shadow-sm shadow-sky-400 hover:shadow-md hover:shadow-sky-400">Sign In</button>
+                        {error && <p className="text-[10px] text-red-500">{error}</p>} {/* Display error message if login fails */}
+                    </form> 
+
+                    <br />
+                    <div>No account, then create one <a href="/signup" className="underline text-sky-400">here</a></div>
+                </div>
             </div>
         </>
     );
 }
+
+
