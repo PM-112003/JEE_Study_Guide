@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
 import { signin } from "../../api"; // Importing the signin function
 
 export default function SignIn() {
     const [formData, setFormData] = useState({ username: "", password: "" });
+    const location = useLocation(); 
     const [error, setError] = useState(location.state?.message || ""); // <-- Add this state to handle errors
     const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ export default function SignIn() {
                         <label htmlFor="password">Password: </label>
                         <input type="password" id="password" className="text-black ml-2 rounded-xl p-2" name="password" value={formData.password} placeholder="Password" onChange={handleChange} required /> <br /> <br />
                         <button type="submit" className="border-[1px] p-2 rounded-xl w-[30%] border-slate-600 shadow-sm shadow-sky-400 hover:shadow-md hover:shadow-sky-400">Sign In</button>
-                        {error && <p className="text-[10px] text-red-500">{error}</p>} {/* Display error message if login fails */}
+                        {error && <p className="text-[10px] text-red-500 mt-4">{error}</p>} {/* Display error message if login fails */}
                     </form> 
 
                     <br />

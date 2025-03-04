@@ -54,15 +54,18 @@ router.post("/signin", async (req, res) => {
 });
 
 //user authentication route
-router.get("/check-auth", (req, res) => {
-  const token = req.cookies.token; // Get token from cookies
-  if (!token) return res.status(401).json({ message: "Unauthorized" });
-
+router.get("/check-auth", async (req, res) => {
   try {
-      jwt.verify(token, process.env.JWT_SECRET);
-      res.json({ message: "Authenticated" });
+    const token = req.cookies.token; // Get token from cookies
+    if (!token) return res.json({ authenticated: false });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
+    if (!user) return res.json({ authenticated: false });
+
+    res.json({ authenticated: true });
   } catch (error) {
-      res.status(401).json({ message: "Invalid token" });
+      res.json({ authenticated: false });
   }
 });
 

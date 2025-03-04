@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 // import './App.css'
@@ -32,13 +33,6 @@ function App() {
       path: "/video/:videoId/:topic",
       element: <><YoutubePlay></YoutubePlay></>
     },
-    
-    // The practice routes
-    {
-      path: "/practice/:practice",
-      element: <> <Practice_1></Practice_1> </>
-    },
-
     //blogs paths
     {
       path: "/doubts_blog",
