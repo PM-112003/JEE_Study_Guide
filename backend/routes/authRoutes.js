@@ -33,7 +33,10 @@ router.post("/signin", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
-    if (!user) return res.status(400).json({ message: "User not found" });
+    if (!user){
+      console.log("user not found");
+      return res.status(400).json({ message: "User not found" });
+    } 
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
@@ -49,6 +52,20 @@ router.post("/signin", async (req, res) => {
     res.status(500).json({ message: "Error logging in" });
   }
 });
+
+//user authentication route
+router.get("/check-auth", (req, res) => {
+  const token = req.cookies.token; // Get token from cookies
+  if (!token) return res.status(401).json({ message: "Unauthorized" });
+
+  try {
+      jwt.verify(token, process.env.JWT_SECRET);
+      res.json({ message: "Authenticated" });
+  } catch (error) {
+      res.status(401).json({ message: "Invalid token" });
+  }
+});
+
 
 // User Logout
 router.post("/logout", (req, res) => {
