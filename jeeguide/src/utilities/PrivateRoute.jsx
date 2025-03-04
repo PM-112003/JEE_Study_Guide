@@ -17,9 +17,9 @@ const PrivateRoute = ({ children }) => {
         checkAuth();
     }, []);
 
-    if (isAuthenticated === null) return <div>Loading...</div>; // Show loading until check is complete
+    if (isAuthenticated === null) return null; // Show loading until check is complete
 
-    return isAuthenticated ? children : <Navigate to="/" />;
+    return isAuthenticated ? children : <Navigate to="/" state={{ message: "Please sign in to access this page." }}/>;
 };
 
 export default PrivateRoute;

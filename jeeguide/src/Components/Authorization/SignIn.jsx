@@ -4,7 +4,7 @@ import { signin } from "../../api"; // Importing the signin function
 
 export default function SignIn() {
     const [formData, setFormData] = useState({ username: "", password: "" });
-    const [error, setError] = useState(""); // <-- Add this state to handle errors
+    const [error, setError] = useState(location.state?.message || ""); // <-- Add this state to handle errors
     const navigate = useNavigate();
 
     const handleChange = (e) => {

@@ -10,13 +10,15 @@ import Blog_1 from './Components/Blogs/Blog_1';
 import { SignalIcon } from 'lucide-react';
 import SignIn from './Components/Authorization/SignIn';
 import SignUp from './Components/Authorization/SignUp';
+import PrivateRoute from './utilities/PrivateRoute';
+import axios from "axios";
 
 function App() {
-
+  
   const router = createBrowserRouter([
     {
       path: "/content",
-      element: <><Fullpage></Fullpage></>
+      element: <PrivateRoute><Fullpage></Fullpage></PrivateRoute>
     },
     {
       path: "/",
