@@ -9,8 +9,10 @@ const PrivateRoute = ({ children }) => {
         const checkAuth = async () => {
             try {
                 const response = await axios.get("https://jee-study-guide.onrender.com/api/auth/check-auth", { withCredentials: true });
+                console.log("Auth check response:", response.data);
                 setIsAuthenticated(response.data.authenticated);
             } catch (error) {
+                console.log("Error checking auth:", error);
                 setIsAuthenticated(false);
             }
         };
