@@ -6,6 +6,7 @@ const PrivateRoute = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
 
     useEffect(() => {
+        console.log("Checking authentication...");
         const checkAuth = async () => {
             try {
                 const response = await axios.get("https://jee-study-guide.onrender.com/api/auth/check-auth", { withCredentials: true });
