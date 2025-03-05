@@ -55,16 +55,25 @@ router.post("/signin", async (req, res) => {
 
 //user authentication route
 router.get("/check-auth", async (req, res) => {
+  console.log("Cookies received:", req.cookies);
   try {
     const token = req.cookies.token; // Get token from cookies
-    if (!token) return res.json({ authenticated: false });
+    if (!token){
+      console.log("No token found");
+      return res.json({ authenticated: false });
+    }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decoded.id);
-    if (!user) return res.json({ authenticated: false });
+    if (!user){
+      console.log("User not found in database");
+      return res.json({ authenticated: false });
+    } 
 
+    console.log("User authenticated");
     res.json({ authenticated: true });
   } catch (error) {
+      console.log("Error verifying token:", error);
       res.json({ authenticated: false });
   }
 });
