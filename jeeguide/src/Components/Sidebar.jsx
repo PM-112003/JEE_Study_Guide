@@ -84,9 +84,8 @@ export default function Sidebar({setActiveSection, opensidebar, setOpenSidebar})
                 <div className="md:w-60 text-center flex flex-col items-center position: absolute bottom-1">
                     <p>Made with &#9829; by Parikshit</p>
                     <p className="mt-3">
-                        <FontAwesomeIcon icon={faInstagram} className="text-slate-400 text-xl cursor-pointer opacity-70 hover:opacity-100 transition duration-300 ease-in-out" />
-                        <FontAwesomeIcon icon={faLinkedinIn} className="text-slate-400 ml-3 text-xl cursor-pointer opacity-70 hover:opacity-100 transition duration-300 ease-in-out" />
-                        <FontAwesomeIcon icon={faGithub} className="text-slate-400 ml-3 text-xl cursor-pointer opacity-70 hover:opacity-100 transition duration-300 ease-in-out" />
+                        <a href="https://www.linkedin.com/in/parikshit-morya-b922ba250/"><FontAwesomeIcon icon={faLinkedinIn} className="text-slate-400 ml-3 text-xl cursor-pointer opacity-70 hover:opacity-100 transition duration-300 ease-in-out" /></a>
+                        <a href="https://github.com/PM-112003?tab=repositories"><FontAwesomeIcon icon={faGithub} className="text-slate-400 ml-3 text-xl cursor-pointer opacity-70 hover:opacity-100 transition duration-300 ease-in-out" /></a>
                     </p>
                 </div>
                 
