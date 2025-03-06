@@ -5,6 +5,7 @@ import { signup } from "../../api"; // Importing the signin function
 export default function SignUp() {
     const [formData, setFormData] = useState({ username: "", email: "", password: "" });
     const [error, setError] = useState(""); // <-- Add this state to handle errors
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -14,12 +15,15 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(""); // Clear any previous error
+        setLoading(true);
         try {
             await signup(formData); // Call API function
             navigate("/content"); // Redirect to homepage after successful login
         } catch (error) {
             console.error("Signup failed", error.response?.data?.message || error.message);
             setError(error.response?.data?.message || "Signup failed. Please try again.");
+        } finally {
+            setLoading(false); // Hide loading message after response
         }
     };
 
@@ -42,6 +46,7 @@ export default function SignUp() {
                         <label htmlFor="email">Email address: </label>
                         <input type="email" id="email" className="text-black ml-2 rounded-xl p-2" name="email" value={formData.email} placeholder="Your email" onChange={handleChange} required /> <br /> <br />
                         <button type="submit" className="border-[1px] p-2 rounded-xl w-[30%] border-slate-600 shadow-sm shadow-sky-400 hover:shadow-md hover:shadow-sky-400">Sign Up</button>
+                        {loading && <p className="text-[14px] text-sky-500 mt-4">Signing you up...</p>}
                         {error && <p className="text-[10px] text-red-500">{error}</p>} {/* Display error message if login fails */}
                     </form> 
                 </div>
