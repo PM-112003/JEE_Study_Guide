@@ -6,6 +6,7 @@ export default function SignIn() {
     const [formData, setFormData] = useState({ username: "", password: "" });
     const location = useLocation(); 
     const [error, setError] = useState(location.state?.message || ""); // <-- Add this state to handle errors
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -15,12 +16,15 @@ export default function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(""); // Clear any previous error
+        setLoading(true);
         try {
             await signin(formData); // Call API function
             navigate("/content"); // Redirect to homepage after successful login
         } catch (error) {
             console.error("Login failed", error.response?.data?.message || error.message);
             setError(error.response?.data?.message || "Login failed. Please try again.");
+        }finally {
+            setLoading(false); // Hide loading message after response
         }
     };
 
@@ -40,7 +44,10 @@ export default function SignIn() {
                         <input type="text" id="username"  className="text-black ml-2 rounded-xl p-2" name="username" value={formData.username} placeholder="Username" onChange={handleChange} required /> <br /> <br />
                         <label htmlFor="password">Password: </label>
                         <input type="password" id="password" className="text-black ml-2 rounded-xl p-2" name="password" value={formData.password} placeholder="Password" onChange={handleChange} required /> <br /> <br />
-                        <button type="submit" className="border-[1px] p-2 rounded-xl w-[30%] border-slate-600 shadow-sm shadow-sky-400 hover:shadow-md hover:shadow-sky-400">Sign In</button>
+                        <button type="submit" disabled={loading} className="border-[1px] p-2 rounded-xl w-[30%] border-slate-600 shadow-sm shadow-sky-400 hover:shadow-md hover:shadow-sky-400 ">
+                            Sign In 
+                        </button>
+                        {loading && <p className="text-[10px] text-sky-500 mt-4">Signing In...</p>}
                         {error && <p className="text-[10px] text-red-500 mt-4">{error}</p>} {/* Display error message if login fails */}
                     </form> 
 
