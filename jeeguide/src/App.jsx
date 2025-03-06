@@ -19,7 +19,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/content",
-      element: <><Fullpage></Fullpage></>
+      element: <PrivateRoute><Fullpage></Fullpage></PrivateRoute>
     },
     {
       path: "/",
